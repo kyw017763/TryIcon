@@ -15,5 +15,43 @@ namespace TryIcon
         {
             InitializeComponent();
         }
+
+        private void BtnTray_VisibleChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void VisibleChange(bool visible)
+        {
+            this.Visible = visible;
+            this.ntiTray.Visible = !visible;
+        }
+
+        private void BtnTray_Click(object sender, EventArgs e)
+        {
+            VisibleChange(false);
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            VisibleChange(false);
+        }
+
+        private void NtiTray_DoubleClick(object sender, EventArgs e)
+        {
+            VisibleChange(true);
+        }
+
+        private void 폼보이기ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            VisibleChange(true);
+        }
+
+        private void 종료ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ntiTray.Visible = false;
+            Application.ExitThread(); // 창이 여러개 떠있을 때에도 확실하게 종료 가능
+        }
     }
 }
